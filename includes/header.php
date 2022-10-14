@@ -1,0 +1,64 @@
+<header id="header" class="header-transparent header-effect-shrink appear-animation"
+			data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}"
+			data-appear-animation="fadeIn" data-appear-animation-delay="200">
+			<div class="header-body border-top-0 header-body-bottom-border">
+				<div class="header-container container">
+					<div class="header-row">
+						<div class="header-column">
+							<div class="header-row">
+								<div class="header-logo">
+									<a href="indexphp">
+										<img alt="Porto" width="100" height="48" data-sticky-width="82"
+											data-sticky-height="40" src="img/logo-default-slim.png">
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="header-column justify-content-end">
+							<div class="header-row">
+								<div class="header-nav header-nav-links justify-content-start order-2 order-lg-1">
+									<div
+										class="header-nav-main header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
+										<nav class="collapse">
+											<ul class="nav nav-pills" id="mainNav">
+												<li class="dropdown">
+													<a class="dropdown-item active" data-hash data-hash-offset="0"
+														data-hash-offset-lg="95" href="#home">Home</a>
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-item" data-hash data-hash-offset="0"
+														data-hash-offset-lg="95" href="#about">About</a>
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-item" data-hash data-hash-offset="0"
+														data-hash-offset-lg="95" href="#solutions">Solutions</a>
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-item" data-hash data-hash-offset="0"
+														data-hash-offset-lg="95" href="#pricing">Pricing</a>
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-item" data-hash data-hash-offset="0"
+														data-hash-offset-lg="95" href="#reviews">Reviews</a>
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-item" data-hash data-hash-offset="0"
+														data-hash-offset-lg="95" href="#news">News</a>
+												</li>
+											</ul>
+										</nav>
+									</div>
+									<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"
+										data-bs-target=".header-nav-main nav">
+										<i class="fas fa-bars"></i>
+									</button>
+								</div>
+								<a class="btn btn-primary btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 order-1 order-lg-2 d-none d-md-block me-3 me-lg-0"
+									data-hash data-hash-offset="0" data-hash-offset-lg="65" href="#freeseo">Free SEO
+									Analysis</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
