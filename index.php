@@ -424,7 +424,7 @@
 				<div class="row">
 					<div class="col-md-4 mb-5 mb-md-0">
 						<article>
-							<a href="demo-seo-blog-postphp" class="text-decoration-none">
+							<a href="demo-seo-blog-post" class="text-decoration-none">
 								<span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
 									<span class="thumb-info-wrapper">
 										<img src="img/demos/seo/blog/blog-1.jpg" class="img-fluid" alt="">
@@ -435,7 +435,7 @@
 									</span>
 								</span>
 							</a>
-							<h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-postphp" class="text-color-dark text-decoration-none">You can
+							<h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-post" class="text-color-dark text-decoration-none">You can
 									now automatically set your browser history to be deleted</a></h2>
 							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis,
 								tortor vel euismod elementum, sapien risus...</p>
@@ -443,7 +443,7 @@
 					</div>
 					<div class="col-md-4 mb-5 mb-md-0">
 						<article>
-							<a href="demo-seo-blog-postphp" class="text-decoration-none">
+							<a href="demo-seo-blog-post" class="text-decoration-none">
 								<span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
 									<span class="thumb-info-wrapper">
 										<img src="img/demos/seo/blog/blog-2.jpg" class="img-fluid" alt="">
@@ -454,7 +454,7 @@
 									</span>
 								</span>
 							</a>
-							<h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-postphp" class="text-color-dark text-decoration-none">10 SEO
+							<h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-post" class="text-color-dark text-decoration-none">10 SEO
 									best practices you should be doing right now</a></h2>
 							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis,
 								tortor vel euismod elementum, sapien risus...</p>
@@ -462,7 +462,7 @@
 					</div>
 					<div class="col-md-4">
 						<article>
-							<a href="demo-seo-blog-postphp" class="text-decoration-none">
+							<a href="demo-seo-blog-post" class="text-decoration-none">
 								<span class="thumb-info thumb-info-no-borders custom-thumb-info-style-1 pb-2 mb-2 mb-md-4">
 									<span class="thumb-info-wrapper">
 										<img src="img/demos/seo/blog/blog-3.jpg" class="img-fluid" alt="">
@@ -473,7 +473,7 @@
 									</span>
 								</span>
 							</a>
-							<h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-postphp" class="text-color-dark text-decoration-none">Data,
+							<h2 class="font-weight-semibold custom-fs-1 line-height-3 ls-0 mb-2"><a href="demo-seo-blog-post" class="text-color-dark text-decoration-none">Data,
 									Data Everywhere — Where are the Campaign Insights?</a></h2>
 							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis,
 								tortor vel euismod elementum, sapien risus...</p>
@@ -482,7 +482,7 @@
 				</div>
 				<div class="row mt-5">
 					<div class="col text-center">
-						<a href="demo-seo-blogphp" class="btn btn-primary btn-outline btn-rounded font-weight-semibold text-4 btn-px-5 btn-py-2">View
+						<a href="demo-seo-blog" class="btn btn-primary btn-outline btn-rounded font-weight-semibold text-4 btn-px-5 btn-py-2">View
 							More</a>
 					</div>
 				</div>
@@ -564,7 +564,7 @@
 			</section>
 
 			<!-- Form -->
-			<form id="demo-form" class="contact-form white-popup-block mfp-hide" action="https://www.okler.net/previews/porto/9.8.0/php/contact-form.php" method="POST">
+			<form id="demo-form" class="contact-form white-popup-block mfp-hide" action="https://www.okler.net/previews/porto/9.8.0/php/contact-form" method="POST">
 				<div class="row mt-2">
 					<div class="col-sm-12">
 						<h2 class="font-weight-bold text-center text-7 mb-4">Get a Quote</h2>

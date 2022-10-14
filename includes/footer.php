@@ -2,7 +2,7 @@
 			<div class="container my-4">
 				<div class="row py-5">
 					<div class="col-lg-2 align-self-center mb-5 mb-lg-0">
-						<a href="demo-seophp">
+						<a href="demo-seo">
 							<img src="img/logo-default-slim.png" class="img-fluid" alt="Demo SEO" width="100" />
 						</a>
 					</div>
@@ -65,7 +65,7 @@
 						</div>
 						<div class="alert alert-danger d-none" id="newsletterError"></div>
 						<form id="newsletterForm"
-							action="https://www.okler.net/previews/porto/9.8.0/php/newsletter-subscribe.php"
+							action="https://www.okler.net/previews/porto/9.8.0/php/newsletter-subscribe"
 							method="POST" class="mw-100">
 							<div class="input-group">
 								<input
