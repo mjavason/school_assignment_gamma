@@ -26,15 +26,7 @@
 										<li class="dropdown">
 											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#solutions">Solutions</a>
 										</li>
-										<li class="dropdown">
-											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#pricing">Pricing</a>
-										</li>
-										<li class="dropdown">
-											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#reviews">Reviews</a>
-										</li>
-										<li class="dropdown">
-											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#news">News</a>
-										</li>
+										
 									</ul>
 								</nav>
 							</div>
