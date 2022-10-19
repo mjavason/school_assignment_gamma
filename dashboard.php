@@ -34,6 +34,9 @@ if (!isset($_SESSION['log'])) {
 
 			<div class="container position-relative py-5" style="min-height: 643px;" id="home">
 				<?php require_once('includes/svg_animation.php') ?>
+				<div class="row align-items-center py-5 p-relative z-index-1">
+					<h1>User Dashboard</h1>
+				</div>
 			</div>
 
 			

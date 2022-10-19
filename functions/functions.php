@@ -190,6 +190,15 @@ function validateEmail($email)
   return isset($result) && count($result) > 0;
 }
 
+function validateStudentRegNumber($reg)
+{
+  global $db_handle;
+  //$response = [];
+  $result = $db_handle->selectAllWhere('students', 'reg_no', $reg);
+
+  return isset($result) && count($result) > 0;
+}
+
 function confirmUserEmailAndPassword($postemail, $postpassword, $rememberMe)
 {
   global $db_handle;
@@ -233,21 +242,55 @@ function confirmUserEmailAndPassword($postemail, $postpassword, $rememberMe)
   }
 }
 
-function createNewUser($firstName, $lastName, $email, $password)
+function getDepartmentId($departmentName)
+{
+
+  global $db_handle;
+
+  $result = $db_handle->selectAllWhere('departments', 'department_name', $departmentName);
+  if (isset($result)) {
+    return $result[0]['id'];
+  }else{
+    return false;
+  }
+}
+
+function createNewStudent($firstName, $lastName, $gender, $email, $phone, $reg, $departmentId, $password)
 {
   global $db_handle;
 
   $firstName = sanitize($firstName, 'clean');
   $lastName = sanitize($lastName, 'clean');
   $email = sanitize($email);
+  $gender = sanitize($gender);
+  $phone = sanitize($phone);
+  $reg = sanitize($reg);
+  //$departmentId = getDepartmentID(sanitize($department));
   $password = sha1($password);
 
-  $query = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`) VALUES ('$firstName', '$lastName', '$email', '$password');";
+
+  $query = "INSERT INTO `students` (
+  `first_name`,
+  `last_name`,	
+  `gender`,
+  `email`,
+  `reg_no`,	
+  `phone`,
+  `department_id`,	
+  `password`) VALUES (
+    '$firstName',
+    '$lastName',
+    '$gender',
+    '$email',
+    '$reg',
+    '$phone',
+    $departmentId,
+    '$password');";
   return $db_handle->runQueryWithoutResponse($query);
 }
 
 function gotoPage($location)
 {
-    header('location:' . $location);
-    exit();
+  header('location:' . $location);
+  exit();
 }

@@ -194,6 +194,7 @@ function getInputValuesAndReturnTheirContentAsJson(elementIdsParsed) {
     }
     //console.log(JSON.stringify(jsonArray, 't', 3));
     //return JSON.stringify(jsonArray, 't', 3);
+   // console.log(jsonArray);
     return jsonArray;
 }
 
@@ -246,7 +247,8 @@ function logout() {
         });
 }
 
-function createNewUser(url, dataRequest) {
+function createNewStudent(url, dataRequest) {
+    console.log(dataRequest);
     setLoader();
     $.post(url,   // url
         dataRequest,//{ myData: 'This is my data.' }, // data to be submit
@@ -264,10 +266,10 @@ function createNewUser(url, dataRequest) {
                 }).then((value) => {
                     if (value) {
                         //swal(`The returned value is: ${value}`);
-                        window.location = 'sign-in#login-box';
+                        window.location = 'index#login_section';
                     } else {
                         //swal(`The returned value is: ${value}`);
-                        window.location = 'sign-in#login-box';
+                        window.location = 'index#login_section';
                     }
                 });
 

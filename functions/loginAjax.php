@@ -16,18 +16,24 @@ switch ($_POST) {
         break;
         //Login functionality
 
-    case (isset($_POST['user_email']) && isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['agree']) && isset($_POST['password1']) && isset($_POST['password2'])):
+    case (isset($_POST['student_email']) && isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['student_gender']) && isset($_POST['student_phone']) && isset($_POST['student_reg']) && isset($_POST['student_department']) && isset($_POST['agree']) && isset($_POST['password1']) && isset($_POST['password2'])):
         if ($password1 === $password2) {
-            if (!validateEmail($user_email)) {
-                if (createNewUser($first_name, $last_name, $user_email, $password1)) {
-                    $arrayAssoc = ([['Success' => 'User Successfully registered']]);
-                    print json_encode($arrayAssoc);
+            if (!validateEmail($student_email) && !validateStudentRegNumber($student_reg)) {
+                $departmentId = getDepartmentId($student_department);
+                if ($departmentId) {
+                    if (createNewStudent($first_name, $last_name, $student_gender, $student_email, $student_phone, $student_reg, $departmentId, $password1)) {
+                        $arrayAssoc = ([['Success' => 'User Successfully registered']]);
+                        print json_encode($arrayAssoc);
+                    } else {
+                        $arrayAssoc = ([['error' => 'Unknown error occured']]);
+                        print json_encode($arrayAssoc);
+                    }
                 } else {
-                    $arrayAssoc = ([['error' => 'Unknown error occured']]);
+                    $arrayAssoc = ([['error' => 'School Department not found']]);
                     print json_encode($arrayAssoc);
                 }
             } else {
-                $arrayAssoc = ([['error' => 'Unable to register. Email already exists']]);
+                $arrayAssoc = ([['error' => 'Unable to register. User already exists']]);
                 print json_encode($arrayAssoc);
             }
         } else {
@@ -37,3 +43,4 @@ switch ($_POST) {
         break;
         //Create new user functionality
 }
+//['first_name', 'last_name','student_gender', 'student_email', 'student_phone', 'student_reg','student_department', 'password1', 'password2', 'agree']
