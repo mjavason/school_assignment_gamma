@@ -185,7 +185,7 @@ function validateEmail($email)
 {
   global $db_handle;
   //$response = [];
-  $result = $db_handle->selectAllWhere('users', 'email', $email);
+  $result = $db_handle->selectAllWhere('students', 'email', $email);
 
   return isset($result) && count($result) > 0;
 }
@@ -194,7 +194,7 @@ function confirmUserEmailAndPassword($postemail, $postpassword, $rememberMe)
 {
   global $db_handle;
   //$response = [];
-  $result = $db_handle->selectAllWhereWith2Conditions('users', 'email', $postemail, 'password', sha1($postpassword));
+  $result = $db_handle->selectAllWhereWith2Conditions('students', 'email', $postemail, 'password', sha1($postpassword));
   if (isset($result) && count($result) > 0) {
     foreach ($result as $row) {
       extract($row);
@@ -202,11 +202,9 @@ function confirmUserEmailAndPassword($postemail, $postpassword, $rememberMe)
       $_SESSION['first_name'] = $first_name;
       $_SESSION['last_name'] = $last_name;
       $_SESSION['full_name'] = $first_name . ' ' . $last_name;
-      $_SESSION['user_id'] = $id;
-      $_SESSION['user_email'] = $postemail;
-      $_SESSION['user_type'] = $type;
-      //$_SESSION['phone'] = $phone;
-      $_SESSION['profilepic'] = $profile_pic;
+      $_SESSION['student_id'] = $id;
+      $_SESSION['student_email'] = $postemail;
+      $_SESSION['phone'] = $phone;
 
       $_SESSION['log'] = true;
 
@@ -230,7 +228,7 @@ function confirmUserEmailAndPassword($postemail, $postpassword, $rememberMe)
     }
     return $result;
   } else {
-    return ([['error' => 'Username or Password is inaccurate']]);
+    return ([['error' => 'Wrong Password']]);
     //return false;
   }
 }
@@ -246,4 +244,10 @@ function createNewUser($firstName, $lastName, $email, $password)
 
   $query = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`) VALUES ('$firstName', '$lastName', '$email', '$password');";
   return $db_handle->runQueryWithoutResponse($query);
+}
+
+function gotoPage($location)
+{
+    header('location:' . $location);
+    exit();
 }

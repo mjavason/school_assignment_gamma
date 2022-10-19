@@ -18,15 +18,30 @@
 								<nav class="collapse">
 									<ul class="nav nav-pills" id="mainNav">
 										<li class="dropdown">
-											<a class="dropdown-item active" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#home">Home</a>
+											<a class="dropdown-item active" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="index">Home</a>
 										</li>
 										<li class="dropdown">
-											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#about">About</a>
+											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#">About</a>
 										</li>
 										<li class="dropdown">
-											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#solutions">Solutions</a>
+											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="#">Solutions</a>
 										</li>
-										
+										<li class="dropdown">
+											<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="test">Test PHP</a>
+										</li>
+										<?php if (!str_contains($_SERVER['PHP_SELF'], 'register')) { ?>
+											<?php if (!isset($_SESSION['log'])) { ?>
+												<li class="dropdown">
+													<a class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95" href="register">Register</a>
+												</li>
+											<?php } else { ?>
+												<li class="dropdown">
+													<a onclick="logout()" class="dropdown-item" data-hash data-hash-offset="0" data-hash-offset-lg="95">Logout</a>
+												</li>
+											<?php	} ?>
+										<?php } ?>
+
+
 									</ul>
 								</nav>
 							</div>
@@ -35,7 +50,7 @@
 							</button>
 						</div>
 						<?php if (!str_contains($_SERVER['PHP_SELF'], 'register')) { ?>
-							<a class="btn btn-primary btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 order-1 order-lg-2 d-none d-md-block me-3 me-lg-0" data-hash data-hash-offset="0" data-hash-offset-lg="65" href="register">Register</a>
+							<!-- <a class="btn btn-primary btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 order-1 order-lg-2 d-none d-md-block me-3 me-lg-0" data-hash data-hash-offset="0" data-hash-offset-lg="65" href="register">Register</a> -->
 						<?php } ?>
 					</div>
 				</div>

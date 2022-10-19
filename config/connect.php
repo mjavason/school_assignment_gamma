@@ -4,7 +4,7 @@ class DBController
 	private $host = "localhost";
 	private $user = "root";
 	private $password = "";
-	private $database = "vestwaycurrency";
+	private $database = "esut_gamma";
 
 	private $conn;
 	private $connPDO;

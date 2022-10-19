@@ -95,7 +95,7 @@ function processLoginAjaxPostRequest(url, dataRequest) {
             //$('#ajax_result').value = ('status: ' + status + ', data: ' + data + '<br>');
             var dataParsed = JSON.parse(data);
             console.log(dataParsed);
-            removeLoader();
+            //removeLoader();
 
             if (dataParsed[0].error == null) {
                 swal("Welcome " + dataParsed[0].first_name + " " + dataParsed[0].last_name, {

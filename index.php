@@ -1,3 +1,11 @@
+<?php
+require_once('config/connect.php');
+require_once('functions/functions.php');
+
+if (isset($_SESSION['log'])) {
+    gotoPage("dashboard.php");
+}
+?>
 <!DOCTYPE html>
 
 <head>
@@ -57,19 +65,23 @@
 								<form class="custom-form-style-1" method="post">
 									<div class="row">
 										<div class="form-group col-lg-5 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1200">
-											<input name="email" type="text" class="form-control" value="" placeholder="REG NUMBER*" id="login_email" required>
+											<input name="email" type="text" class="form-control" onkeyup="checkIfAllFormFieldsFilled('login_button',getInputValuesAndReturnTheirContentAsJson(['login_email', 'login_password']))" value="<?php if (isset($_COOKIE['client_mail'])) {
+																																																												echo $_COOKIE['client_mail'];
+																																																											} ?>" placeholder="EMAIL ADDRESS*" id="login_email" required>
 										</div>
 										<div class="form-group col-lg-4 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1400">
-											<input name="password" type="password" class="form-control" value="" placeholder="PASSWORD*" id="login_password" required>
+											<input onkeyup="checkIfAllFormFieldsFilled('login_button',getInputValuesAndReturnTheirContentAsJson(['login_email', 'login_password']))" value="<?php if (isset($_COOKIE['client_password'])) {
+																																																echo $_COOKIE['client_password'];
+																																															} ?>" id="login_password" name="password" type="password" class="form-control" value="" placeholder="PASSWORD*" id="login_password" required>
 										</div>
-										
+
 										<div class="form-group col-lg-3 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1600">
-											<input type="button" onclick="processLoginAjaxPostRequest('functions/loginAjax.php', getInputValuesAndReturnTheirContentAsJson(['login_email', 'login_password', 'login_remember_me']))" class="btn btn-primary btn-outline font-weight-bold text-3 h-100 rounded-0 btn-px-4" value="Login">
+											<input type="button" onclick="processLoginAjaxPostRequest('functions/loginAjax.php', getInputValuesAndReturnTheirContentAsJson(['login_email', 'login_password', 'login_remember_me']))" class="btn btn-primary btn-outline font-weight-bold text-3 h-100 rounded-0 btn-px-4" id="login_button" value="Login">
 										</div>
 										<div class="form-group col-lg-4 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1400">
 											<input value="1" type="checkbox" name="remember" class="custom-control-input" id="login_remember_me">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+											<label class="custom-control-label" for="customCheck">Remember
+												Me</label>
 										</div>
 									</div>
 								</form>
