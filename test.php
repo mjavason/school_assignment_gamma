@@ -2,4 +2,31 @@
 require_once('config/connect.php');
 require_once('functions/functions.php');
 
-echo (getDepartmentId('Computer Engineering'));
+//echo (getDepartmentId('Computer Engineering'));
+echo '<pre>';
+//print_r(getCoursesTakenByStudent(2017030180311));
+//print_r(getStudentLevel(2017030180311));
+
+$coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
+
+//print_r(getCourseInfo(1));
+
+//$courseResults = getResultsPerCourseTaken($coursesTaken, 1);
+//$courseInfo = getCourseInfo(($courseResults['course_id']));
+//print_r($courseResults);
+
+$studentLevel = getStudentLevel(2017030180311);
+$coursesTaken = getCoursesTakenByStudent(2017030180311);
+for ($i = 0; $i < count($coursesTaken); $i++) {
+    $courseResults = getResultsPerCourseTaken($coursesTaken, $i);
+    if ($courseResults) {
+        $courseInfo = getCourseInfo($courseResults['course_id']);
+        $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
+        if($personalResult != false){
+            print_r($personalResult);
+            echo ($personalResult);
+        }else{
+            echo 'no result found';
+        }
+    }
+}

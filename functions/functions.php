@@ -32,6 +32,13 @@ function sanitize($data, $case = null)
   return $result;
 }
 
+function gotoPage($location)
+{
+  header('location:' . $location);
+  exit();
+}
+
+
 function showSweetAlert($type, $id = null)
 {
   switch ($type) {
@@ -214,6 +221,7 @@ function confirmUserEmailAndPassword($postemail, $postpassword, $rememberMe)
       $_SESSION['student_id'] = $id;
       $_SESSION['student_email'] = $postemail;
       $_SESSION['phone'] = $phone;
+      $_SESSION['student_reg'] = $row['reg_no'];
 
       $_SESSION['log'] = true;
 
@@ -250,7 +258,7 @@ function getDepartmentId($departmentName)
   $result = $db_handle->selectAllWhere('departments', 'department_name', $departmentName);
   if (isset($result)) {
     return $result[0]['id'];
-  }else{
+  } else {
     return false;
   }
 }
@@ -289,8 +297,133 @@ function createNewStudent($firstName, $lastName, $gender, $email, $phone, $reg, 
   return $db_handle->runQueryWithoutResponse($query);
 }
 
-function gotoPage($location)
+function getCoursesTakenByStudent($regNo)
 {
-  header('location:' . $location);
-  exit();
+  global $db_handle;
+  //$response = [];
+  $result = $db_handle->selectAllWhere('students', 'reg_no', $regNo);
+
+  if (isset($result)) {
+    $coursesTaken = json_decode($result[0]['courses_taken'], true);
+    sort($coursesTaken,);
+
+    return $coursesTaken;
+  } else {
+    return false;
+  }
+}
+
+function getStudentLevel($regNo)
+{
+  $years = 0;
+  $coursesTaken = getCoursesTakenByStudent($regNo);
+
+  // foreach ($coursesTaken as $course) {
+  //   if ($course['course_level'] > $course) {
+  //     $years++;
+  //   }
+  // }
+
+  for ($i = 0; $i < count($coursesTaken); $i++) {
+    if ($coursesTaken[$i]['course_level'] > $years) {
+      $years = $coursesTaken[$i]['course_level'];
+    }
+  }
+
+  return $years;
+}
+
+function countCoursesPerYear($coursesTaken, $level)
+{
+  $count = 0;
+  for ($i = 0; $i < count($coursesTaken); $i++) {
+    if ($coursesTaken[$i]['course_level'] == $level) {
+      $count++;
+    }
+  }
+  return $count;
+}
+
+function getCalenderYearPerLevel($coursesTaken, $level)
+{
+  for ($i = 0; $i < count($coursesTaken); $i++) {
+    if ($coursesTaken[$i]['course_level'] == $level) {
+      return $coursesTaken[$i]['year_taken'];
+    }
+  }
+}
+
+function getResultsPerCourseTaken($coursesTaken, $i)
+{
+  //echo $i;
+  //echo 1;
+  global $db_handle;
+  //$response = [];
+  $result = $db_handle->selectAllWhereWith3Conditions('results', 'course_id', $coursesTaken[$i]['course_id'], 'course_credits', $coursesTaken[$i]['course_credits'], 'year', $coursesTaken[$i]['year_taken']);
+  //selectAllWhere('students', 'reg_no', $regNo);
+  //echo 2;
+
+  if (isset($result)) {
+   // echo 3;
+    $courseResultsFull = $result;
+    return $courseResultsFull[0];
+  } else {
+    //echo 4;
+    return false;
+    //return '<br>No result found for this course';
+  }
+}
+
+function getCourseInfo($id)
+{
+  global $db_handle;
+
+  $result = $db_handle->selectAllWhere('courses', 'id', $id);
+  if (isset($result)) {
+    return $result[0];
+  } else {
+    return false;
+  }
+}
+
+function getPersonalResult($results, $regNo)
+{
+  $resultsObj = json_decode($results, true);
+  //$resultsObj = $results;
+
+  foreach ($resultsObj as $result) {
+    if ($result['reg_no'] == $regNo) {
+      return $result;
+    }
+  }
+  return false;
+}
+
+function returnGrade($score)
+{
+  switch ($score) {
+    case ($score < 40):
+      return 'F';
+      break;
+
+    case ($score >= 40 && $score < 50):
+      return 'D';
+      break;
+
+    case ($score >= 50 && $score < 60):
+      return 'C';
+      break;
+
+    case ($score >= 60 && $score < 70):
+      return 'B';
+      break;
+
+    case ($score >= 70):
+      return 'A';
+      break;
+
+    default:
+      return 'X';
+      break;
+  }
 }
