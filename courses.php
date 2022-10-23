@@ -3,7 +3,7 @@ require_once('config/connect.php');
 require_once('functions/functions.php');
 
 if (!isset($_SESSION['log'])) {
-    gotoPage("sign-in.php");
+	gotoPage("index");
 }
 ?>
 <!DOCTYPE html>
@@ -39,8 +39,6 @@ if (!isset($_SESSION['log'])) {
 
 
 
-
-
                     <div class="row">
                         <div class="col">
 
@@ -52,7 +50,6 @@ if (!isset($_SESSION['log'])) {
                                     <li class="nav-item">
                                         <a class="nav-link" href="#secondSemester" data-bs-toggle="tab">Second Semester</a>
                                     </li>
-
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="firstSemester">
@@ -161,7 +158,6 @@ if (!isset($_SESSION['log'])) {
                                                         <p class="m-0">Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc vehicula lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci.</p>
 
                                                     </div>
-
                                                 </div>
 
                                             </div>

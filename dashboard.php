@@ -3,7 +3,7 @@ require_once('config/connect.php');
 require_once('functions/functions.php');
 
 if (!isset($_SESSION['log'])) {
-	gotoPage("sign-in.php");
+	gotoPage("index");
 }
 ?>
 <!DOCTYPE html>
