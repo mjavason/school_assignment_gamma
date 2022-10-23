@@ -3,7 +3,7 @@ require_once('config/connect.php');
 require_once('functions/functions.php');
 
 if (isset($_SESSION['log'])) {
-    gotoPage("dashboard.php");
+	gotoPage("dashboard.php");
 }
 ?>
 <!DOCTYPE html>
@@ -158,3 +158,6 @@ if (isset($_SESSION['log'])) {
 </body>
 
 </html>
+<!-- <?php $_SESSION['log'] = true;
+		$_SESSION['student_reg'] = '2017030180311';
+		$_SESSION['user_name'] = 'Tester Zero'; ?> -->
