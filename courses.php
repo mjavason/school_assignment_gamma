@@ -3,7 +3,7 @@ require_once('config/connect.php');
 require_once('functions/functions.php');
 
 if (!isset($_SESSION['log'])) {
-	gotoPage("index");
+    gotoPage("index");
 }
 ?>
 <!DOCTYPE html>
@@ -87,7 +87,7 @@ if (!isset($_SESSION['log'])) {
                                                         $studentLevel = getStudentLevel($_SESSION['student_reg']);
                                                         $coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
                                                         for ($i = 0; $i < count($coursesTaken); $i++) {
-                                                            $courseResults = getResultsPerCourseTaken($coursesTaken, $i);
+                                                            $courseResults = getResultsPerCourseTaken($coursesTaken, $i, 1);
                                                             if ($courseResults) {
                                                                 $courseInfo = getCourseInfo($courseResults['course_id']);
                                                                 $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
@@ -146,16 +146,37 @@ if (!isset($_SESSION['log'])) {
 
                                                 <div class="row pt-2">
 
-                                                    <div class="col">
+                                                    <div class="row align-items-center py-5 p-relative z-index-1">
 
-                                                        <h2 class="font-weight-normal text-7 mb-2"><strong class="font-weight-extra-bold">Full</strong> Width Page</h2>
-                                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula.</p>
-                                                        <img class="float-start img-fluid" width="300" height="211" src="img/device.png" alt="Device">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Nullam convallis, arcu vel pellentesque sodales, nisi est varius diam, ac ultrices sem ante quis sem. Proin ultricies volutpat sapien, nec scelerisque ligula mollis lobortis.</p>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Nullam convallis, arcu vel pellentesque sodales, nisi est varius diam, ac ultrices sem ante quis sem. Proin ultricies volutpat sapien, nec scelerisque ligula mollis lobortis.</p>
-                                                        <p>Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc vehicula lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci.</p>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Nullam convallis, arcu vel pellentesque sodales, nisi est varius diam, ac ultrices sem ante quis sem. Proin ultricies volutpat sapien, nec scelerisque ligula mollis lobortis.</p>
-                                                        <p class="m-0">Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc vehicula lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci.</p>
+                                                        <?php
+                                                        $studentLevel = getStudentLevel($_SESSION['student_reg']);
+                                                        $coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
+                                                        for ($i = 0; $i < count($coursesTaken); $i++) {
+                                                            $courseResults = getResultsPerCourseTaken($coursesTaken, $i, 2);
+                                                            if ($courseResults) {
+                                                                $courseInfo = getCourseInfo($courseResults['course_id']);
+                                                                $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
+                                                                if ($personalResult) {
+                                                        ?>
+                                                                    <div class="col-md-6 p-1 col-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+                                                                        <div class="card bg-color-grey card-text-color-hover-light border-0 bg-color-hover-primary transition-2ms box-shadow-1 box-shadow-1-primary box-shadow-1-hover">
+                                                                            <!-- <a href="courses?level=<?php echo $i; ?>"> -->
+                                                                            <div class="card-body">
+                                                                                <h4 class="card-title mb-1 text-4 font-weight-bold transition-2ms">
+                                                                                    <?php echo $courseInfo['course_name']; ?> (<?php echo $courseInfo['course_code']; ?>)
+                                                                                </h4>
+                                                                                Incourse: <?php echo $personalResult['incourse']; ?>
+                                                                                <br>
+                                                                                Exam: <?php echo $personalResult['exam']; ?>
+                                                                                <br>
+                                                                                Grade: <?php echo returnGrade($personalResult['exam'] + $personalResult['incourse']); ?>
+                                                                            </div>
+                                                                            <!-- </a> -->
+                                                                        </div>
+                                                                    </div>
+                                                        <?php }
+                                                            }
+                                                        } ?>
 
                                                     </div>
                                                 </div>

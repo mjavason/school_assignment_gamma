@@ -353,24 +353,36 @@ function getCalenderYearPerLevel($coursesTaken, $level)
   }
 }
 
-function getResultsPerCourseTaken($coursesTaken, $i)
+function getResultsPerCourseTaken($coursesTaken, $i, $semester)
 {
   //echo $i;
   //echo 1;
   global $db_handle;
   //$response = [];
-  $result = $db_handle->selectAllWhereWith3Conditions('results', 'course_id', $coursesTaken[$i]['course_id'], 'course_credits', $coursesTaken[$i]['course_credits'], 'year', $coursesTaken[$i]['year_taken']);
+  $result = $db_handle->selectAllWhereWith4Conditions('results', 'course_id', $coursesTaken[$i]['course_id'], 'course_credits', $coursesTaken[$i]['course_credits'], 'year', $coursesTaken[$i]['year_taken'], 'semester', $semester);
+
   //selectAllWhere('students', 'reg_no', $regNo);
   //echo 2;
 
   if (isset($result)) {
-   // echo 3;
+    // echo 3;
     $courseResultsFull = $result;
     return $courseResultsFull[0];
   } else {
-    //echo 4;
-    return false;
-    //return '<br>No result found for this course';
+    $result = $db_handle->selectAllWhereWith3Conditions('results', 'course_id', $coursesTaken[$i]['course_id'], 'year', $coursesTaken[$i]['year_taken'], 'semester', $semester);
+
+    //selectAllWhere('students', 'reg_no', $regNo);
+    //echo 2;
+
+    if (isset($result)) {
+      // echo 3;
+      $courseResultsFull = $result;
+      return $courseResultsFull[0];
+    } else {
+      //echo 4;
+      return false;
+      //return '<br>No result found for this course';
+    }
   }
 }
 

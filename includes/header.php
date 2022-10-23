@@ -50,7 +50,10 @@
 							</button>
 						</div>
 						<?php if (!str_contains($_SERVER['PHP_SELF'], 'register')) { ?>
-							<!-- <a class="btn btn-primary btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 order-1 order-lg-2 d-none d-md-block me-3 me-lg-0" data-hash data-hash-offset="0" data-hash-offset-lg="65" href="register">Register</a> -->
+							<!-- <a class="btn btn-primary btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 order-1 order-lg-2 d-md-block me-3 me-lg-0" data-hash data-hash-offset="0" data-hash-offset-lg="65" href="register">Register</a> -->
+						<?php } ?>
+						<?php if (isset($_SESSION['user_name'])) { ?>
+							<a class="btn btn-primary btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 order-1 order-lg-2 d-md-block me-3 me-lg-0" data-hash data-hash-offset="0" data-hash-offset-lg="65" href="index"><?= $_SESSION['user_name'] ?></a>
 						<?php } ?>
 					</div>
 				</div>
