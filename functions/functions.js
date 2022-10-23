@@ -194,7 +194,7 @@ function getInputValuesAndReturnTheirContentAsJson(elementIdsParsed) {
     }
     //console.log(JSON.stringify(jsonArray, 't', 3));
     //return JSON.stringify(jsonArray, 't', 3);
-   // console.log(jsonArray);
+    // console.log(jsonArray);
     return jsonArray;
 }
 
@@ -734,6 +734,93 @@ function maxValue(inputElementId, max) {
         inputElement.value = max;
     }
     //console.log(max);
+}
+
+var myFilterBox = addFilterBox({
+    target: {
+        selector: '.course_head',
+        items: '.courses1 .courses2 .courses3',
+        sources: [
+            '.course_name',
+            '.course_name .course_code'
+        ]
+    },
+    addTo: {
+        selector: '.course_head',
+        position: 'before'
+    },
+    input: {
+        label: 'Search: ',
+        attrs: {
+            class: 'form-control',
+            placeholder: '*CEE121 **COMPUTER ENGINEERING'
+        }
+    },
+    // wrapper: {
+    //     tag: 'div',
+    //     attrs: {
+    //         class: 'filterbox-wrap'
+    //     }
+    // },
+    displays: {
+        counter: {
+            tag: 'span',
+            attrs: {
+                class: 'counter'
+            },
+            addTo: {
+                selector: '.filterbox-wrap',
+                position: 'append'
+            },
+            text: function () {
+                return '<strong>' + this.countVisible() + '</strong>/' + this.countTotal();
+            }
+        },
+        noresults: {
+            tag: 'div',
+            addTo: {
+                selector: '.course_head',
+                position: 'after'
+            },
+            attrs: {
+                class: 'no-results'
+            },
+            text: function () {
+                return !this.countVisible() ? 'No matching course code or title for "' + this.getFilter() + '".' : '';
+            }
+        }
+    },
+    callbacks: {
+        onReady: onFilterBoxReady,
+        afterFilter: function () {
+            this.toggleHide(this.getTarget(), this.isAllItemsHidden());
+        },
+        onEnter: function () {
+            var $firstItem = this.getFirstVisibleItem();
+
+            if ($firstItem) {
+                alert('First visible item: ' + $firstItem.querySelector('td').textContent + '\n(onEnter callback)');
+            }
+        }
+    },
+    highlight: {
+        style: 'background: #FFD662',
+        minChar: 1
+    },
+    filterAttr: 'data-filter',
+    suffix: '-mysuffix',
+    debuglevel: 2,
+    inputDelay: 100,
+    zebra: true,
+    enableObserver: true,
+    initTableColumns: true,
+    useDomFilter: false
+});
+
+function onFilterBoxReady() {
+    this.fixTableColumns(this.getTarget());
+    // this.filter('bra');
+    this.focus(true);
 }
 
 // function dollarFormat(number) {

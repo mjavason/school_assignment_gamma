@@ -51,6 +51,9 @@ if (!isset($_SESSION['log'])) {
                                         <a class="nav-link" href="#secondSemester" data-bs-toggle="tab">Second Semester</a>
                                     </li>
                                 </ul>
+
+
+
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="firstSemester">
                                         <!-- First Semester Start -->
@@ -74,14 +77,14 @@ if (!isset($_SESSION['log'])) {
 
                                             <div class="container pt-3 pb-2">
 
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <form action="post">
                                                         <input placeholder="*CEE121 **COMPUTER ENGINEERING" class="form-control" type="text" name="course" id="course">
                                                     </form>
-                                                </div>
+                                                </div> -->
                                                 <div class="row">
 
-                                                    <div class="row align-items-center py-5 p-relative z-index-1">
+                                                    <div class="course_head row align-items-center py-5 p-relative z-index-1">
 
                                                         <?php
                                                         $studentLevel = getStudentLevel($_SESSION['student_reg']);
@@ -93,12 +96,12 @@ if (!isset($_SESSION['log'])) {
                                                                 $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
                                                                 if ($personalResult) {
                                                         ?>
-                                                                    <div class="col-md-6 p-1 col-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-                                                                        <div class="card bg-color-grey card-text-color-hover-light border-0 bg-color-hover-primary transition-2ms box-shadow-1 box-shadow-1-primary box-shadow-1-hover">
+                                                                    <div class="courses1 col-md-6 p-1 col-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+                                                                        <div class="courses2 card bg-color-grey card-text-color-hover-light border-0 bg-color-hover-primary transition-2ms box-shadow-1 box-shadow-1-primary box-shadow-1-hover">
                                                                             <!-- <a href="courses?level=<?php echo $i; ?>"> -->
-                                                                            <div class="card-body">
-                                                                                <h4 class="card-title mb-1 text-4 font-weight-bold transition-2ms">
-                                                                                    <?php echo $courseInfo['course_name']; ?> (<?php echo $courseInfo['course_code']; ?>)
+                                                                            <div class="courses3 card-body">
+                                                                                <h4 class="course_name card-title mb-1 text-4 font-weight-bold transition-2ms">
+                                                                                    <?php echo $courseInfo['course_name']; ?> <span class="course_code">(<?php echo $courseInfo['course_code']; ?>)</span>
                                                                                 </h4>
                                                                                 Incourse: <?php echo $personalResult['incourse']; ?>
                                                                                 <br>
@@ -122,6 +125,10 @@ if (!isset($_SESSION['log'])) {
                                         </div>
                                         <!-- First Semester End -->
                                     </div>
+
+
+
+
                                     <div class="tab-pane" id="secondSemester">
                                         <!-- Second Semester Start -->
                                         <div id="second" role="main" class="main mt-5">
@@ -146,7 +153,7 @@ if (!isset($_SESSION['log'])) {
 
                                                 <div class="row pt-2">
 
-                                                    <div class="row align-items-center py-5 p-relative z-index-1">
+                                                    <div class="course_head row align-items-center py-5 p-relative z-index-1">
 
                                                         <?php
                                                         $studentLevel = getStudentLevel($_SESSION['student_reg']);
@@ -158,12 +165,12 @@ if (!isset($_SESSION['log'])) {
                                                                 $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
                                                                 if ($personalResult) {
                                                         ?>
-                                                                    <div class="col-md-6 p-1 col-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-                                                                        <div class="card bg-color-grey card-text-color-hover-light border-0 bg-color-hover-primary transition-2ms box-shadow-1 box-shadow-1-primary box-shadow-1-hover">
+                                                                    <div class="courses1 col-md-6 p-1 col-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+                                                                        <div class="courses2 card bg-color-grey card-text-color-hover-light border-0 bg-color-hover-primary transition-2ms box-shadow-1 box-shadow-1-primary box-shadow-1-hover">
                                                                             <!-- <a href="courses?level=<?php echo $i; ?>"> -->
-                                                                            <div class="card-body">
-                                                                                <h4 class="card-title mb-1 text-4 font-weight-bold transition-2ms">
-                                                                                    <?php echo $courseInfo['course_name']; ?> (<?php echo $courseInfo['course_code']; ?>)
+                                                                            <div class="courses3 card-body">
+                                                                                <h4 class="course_name card-title mb-1 text-4 font-weight-bold transition-2ms">
+                                                                                    <?php echo $courseInfo['course_name']; ?> <span class="course_code">(<?php echo $courseInfo['course_code']; ?>)</span>
                                                                                 </h4>
                                                                                 Incourse: <?php echo $personalResult['incourse']; ?>
                                                                                 <br>
@@ -186,6 +193,9 @@ if (!isset($_SESSION['log'])) {
                                         </div>
                                         <!-- second semester end -->
                                     </div>
+
+
+
 
                                 </div>
                             </div>
