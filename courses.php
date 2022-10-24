@@ -153,7 +153,7 @@ if (!isset($_SESSION['log'])) {
 
                                                 <div class="row pt-2">
 
-                                                    <div class="course_head row align-items-center py-5 p-relative z-index-1">
+                                                    <div class="course_head2 row align-items-center py-5 p-relative z-index-1">
 
                                                         <?php
                                                         $studentLevel = getStudentLevel($_SESSION['student_reg']);
