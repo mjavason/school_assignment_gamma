@@ -5,11 +5,13 @@ require_once('functions/functions.php');
 if (!isset($_SESSION['log'])) {
     gotoPage("index");
 }
+if(!isset($_GET['level'])){
+    $_GET['level'] = 1;
+}
 ?>
 <!DOCTYPE html>
 
 <head>
-
     <!-- Basic -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +37,7 @@ if (!isset($_SESSION['log'])) {
             <div class="container position-relative py-5" style="min-height: 643px;" id="home">
                 <?php require_once('includes/svg_animation.php') ?>
                 <div class="row align-items-center py-5 mt-5 p-relative z-index-1">
-                    <h1 class="card-title mb-2 font-weight-bold transition-2ms">Year 1 Courses and Grades <a href="#" class="btn btn-primary btn-with-arrow mb-2" href="#">Download<span><i class="fas fa-download"></i></span></a></h1>
+                    <h1 class="card-title mb-2 font-weight-bold transition-2ms">Year <?= $_GET['level'] ?> Courses and Grades <a href="#" class="btn btn-primary btn-with-arrow mb-2" href="#">Download<span><i class="fas fa-download"></i></span></a></h1>
 
 
 
@@ -68,7 +70,7 @@ if (!isset($_SESSION['log'])) {
                                                         <div class="col-md-12 align-self-center order-1">
                                                             <ul class="breadcrumb d-block text-center">
                                                                 <li><a href="index">Dashboard</a></li>
-                                                                <li class="active">Year 1 Courses</li>
+                                                                <li class="active">Year <?= $_GET['level'] ?> Courses</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -142,7 +144,7 @@ if (!isset($_SESSION['log'])) {
                                                         <div class="col-md-12 align-self-center order-1">
                                                             <ul class="breadcrumb d-block text-center">
                                                                 <li><a href="index">Dashboard</a></li>
-                                                                <li class="active">Year 1 Courses</li>
+                                                                <li class="active">Year <?= $_GET['level'] ?> Courses</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -239,7 +241,7 @@ if (!isset($_SESSION['log'])) {
                                     <div class="col-md-12 align-self-center order-1">
                                         <ul class="breadcrumb d-block text-center">
                                             <li><a href="#">Dashboard</a></li>
-                                            <li class="active">Year 1 Courses</li>
+                                            <li class="active">Year <?= $_GET['level'] ?> Courses</li>
                                         </ul>
                                     </div>
                                 </div>
