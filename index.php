@@ -8,6 +8,9 @@ if (isset($_SESSION['log'])) {
 if (isset($_SESSION['super_log'])) {
 	gotoPage("admin/index");
 }
+if (isset($_SESSION['ultra_log'])) {
+	gotoPage("super_admin/index");
+}
 ?>
 <!DOCTYPE html>
 
