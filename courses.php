@@ -5,8 +5,11 @@ require_once('functions/functions.php');
 if (!isset($_SESSION['log'])) {
     gotoPage("index");
 }
-if(!isset($_GET['level'])){
-    $_GET['level'] = 1;
+if (isset($_SESSION['super_log'])) {
+    gotoPage("admin/index");
+}
+if (!isset($_GET['year'])) {
+    gotoPage('dashboard');
 }
 ?>
 <!DOCTYPE html>
@@ -89,10 +92,10 @@ if(!isset($_GET['level'])){
                                                     <div class="course_head row align-items-center py-5 p-relative z-index-1">
 
                                                         <?php
-                                                        $studentLevel = getStudentLevel($_SESSION['student_reg']);
+                                                        $studentLevel = calculateStudentLevel($_SESSION['student_set']);
                                                         $coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
                                                         for ($i = 0; $i < count($coursesTaken); $i++) {
-                                                            $courseResults = getResultsPerCourseTaken($coursesTaken, $i, 1);
+                                                            $courseResults = getResultsPerCourseTaken($coursesTaken[$i], 1, $_GET['year']);
                                                             if ($courseResults) {
                                                                 $courseInfo = getCourseInfo($courseResults['course_id']);
                                                                 $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
@@ -105,11 +108,26 @@ if(!isset($_GET['level'])){
                                                                                 <h4 class="course_name card-title mb-1 text-4 font-weight-bold transition-2ms">
                                                                                     <?php echo $courseInfo['course_name']; ?> <span class="course_code">(<?php echo $courseInfo['course_code']; ?>)</span>
                                                                                 </h4>
-                                                                                Incourse: <?php echo $personalResult['incourse']; ?>
+                                                                                <?php ?>
+                                                                                Incourse: <?php
+                                                                                            if (isset($personalResult['incourse'])) {
+                                                                                                $incourse = compileIncourse($personalResult['incourse']);
+                                                                                                echo $incourse;
+                                                                                            } else {
+                                                                                                $incourse = 0;
+                                                                                            } ?>
                                                                                 <br>
-                                                                                Exam: <?php echo $personalResult['exam']; ?>
+                                                                                Exam: <?php if (isset($personalResult['exam'])) {
+                                                                                            $exam = compileExam($personalResult['exam']);
+                                                                                            echo $exam;
+                                                                                        } else {
+                                                                                            $exam = 0;
+                                                                                            echo $exam;
+                                                                                        }
+                                                                                        ?>
+                                                                                <?php  ?>
                                                                                 <br>
-                                                                                Grade: <?php echo returnGrade($personalResult['exam'] + $personalResult['incourse']); ?>
+                                                                                Grade: <?php echo returnGrade($incourse + $exam); ?>
                                                                             </div>
                                                                             <!-- </a> -->
                                                                         </div>
@@ -158,10 +176,10 @@ if(!isset($_GET['level'])){
                                                     <div class="course_head2 row align-items-center py-5 p-relative z-index-1">
 
                                                         <?php
-                                                        $studentLevel = getStudentLevel($_SESSION['student_reg']);
+                                                        $studentLevel = calculateStudentLevel($_SESSION['student_set']);
                                                         $coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
                                                         for ($i = 0; $i < count($coursesTaken); $i++) {
-                                                            $courseResults = getResultsPerCourseTaken($coursesTaken, $i, 2);
+                                                            $courseResults = getResultsPerCourseTaken($coursesTaken[$i], 2, $_GET['year']);
                                                             if ($courseResults) {
                                                                 $courseInfo = getCourseInfo($courseResults['course_id']);
                                                                 $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
@@ -174,11 +192,26 @@ if(!isset($_GET['level'])){
                                                                                 <h4 class="course_name card-title mb-1 text-4 font-weight-bold transition-2ms">
                                                                                     <?php echo $courseInfo['course_name']; ?> <span class="course_code">(<?php echo $courseInfo['course_code']; ?>)</span>
                                                                                 </h4>
-                                                                                Incourse: <?php echo $personalResult['incourse']; ?>
+                                                                                <?php ?>
+                                                                                Incourse: <?php
+                                                                                            if (isset($personalResult['incourse'])) {
+                                                                                                $incourse = compileIncourse($personalResult['incourse']);
+                                                                                                echo $incourse;
+                                                                                            } else {
+                                                                                                $incourse = 0;
+                                                                                            } ?>
                                                                                 <br>
-                                                                                Exam: <?php echo $personalResult['exam']; ?>
+                                                                                Exam: <?php if (isset($personalResult['exam'])) {
+                                                                                            $exam = compileExam($personalResult['exam']);
+                                                                                            echo $exam;
+                                                                                        } else {
+                                                                                            $exam = 0;
+                                                                                            echo $exam;
+                                                                                        }
+                                                                                        ?>
+                                                                                <?php  ?>
                                                                                 <br>
-                                                                                Grade: <?php echo returnGrade($personalResult['exam'] + $personalResult['incourse']); ?>
+                                                                                Grade: <?php echo returnGrade($incourse + $exam); ?>
                                                                             </div>
                                                                             <!-- </a> -->
                                                                         </div>

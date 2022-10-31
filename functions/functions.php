@@ -220,6 +220,7 @@ function confirmUserEmailAndPassword($postemail, $postpassword, $rememberMe)
       $_SESSION['full_name'] = $first_name . ' ' . $last_name;
       $_SESSION['student_id'] = $id;
       $_SESSION['student_email'] = $postemail;
+      $_SESSION['student_set'] = $set_year;
       $_SESSION['phone'] = $phone;
       $_SESSION['student_reg'] = $row['reg_no'];
 
@@ -333,12 +334,15 @@ function getStudentLevel($regNo)
   return $years;
 }
 
-function countCoursesPerYear($coursesTaken, $level)
+function countCoursesPerYear($coursesTaken, $year)
 {
   $count = 0;
-  for ($i = 0; $i < count($coursesTaken); $i++) {
-    if ($coursesTaken[$i]['course_level'] == $level) {
-      $count++;
+  foreach ($coursesTaken as $courseTaken) {
+    $courseSessionInfo = getCourseSessionInfo($courseTaken['course_id'], $courseTaken['course_credits']);
+    if (!empty($courseSessionInfo)) {
+      if ($courseSessionInfo['year'] == $year) {
+        $count++;
+      }
     }
   }
   return $count;
@@ -353,23 +357,14 @@ function getCalenderYearPerLevel($coursesTaken, $level)
   }
 }
 
-function getResultsPerCourseTaken($coursesTaken, $i, $semester)
+function getResultsPerCourseTaken($courseTaken, $semester, $year)
 {
   //echo $i;
   //echo 1;
   global $db_handle;
   //$response = [];
-  $result = $db_handle->selectAllWhereWith4Conditions('results', 'course_id', $coursesTaken[$i]['course_id'], 'course_credits', $coursesTaken[$i]['course_credits'], 'year', $coursesTaken[$i]['year_taken'], 'semester', $semester);
-
-  //selectAllWhere('students', 'reg_no', $regNo);
-  //echo 2;
-
-  if (isset($result)) {
-    // echo 3;
-    $courseResultsFull = $result;
-    return $courseResultsFull[0];
-  } else {
-    $result = $db_handle->selectAllWhereWith3Conditions('results', 'course_id', $coursesTaken[$i]['course_id'], 'year', $coursesTaken[$i]['year_taken'], 'semester', $semester);
+  if (isset($courseTaken)) {
+    $result = $db_handle->selectAllWhereWith4Conditions('results', 'course_id', $courseTaken['course_id'], 'course_credits', $courseTaken['course_credits'], 'year', $year, 'semester', $semester);
 
     //selectAllWhere('students', 'reg_no', $regNo);
     //echo 2;
@@ -379,9 +374,20 @@ function getResultsPerCourseTaken($coursesTaken, $i, $semester)
       $courseResultsFull = $result;
       return $courseResultsFull[0];
     } else {
-      //echo 4;
-      return false;
-      //return '<br>No result found for this course';
+      $result = $db_handle->selectAllWhereWith3Conditions('results', 'course_id', $courseTaken['course_id'], 'year', $year, 'semester', $semester);
+
+      //selectAllWhere('students', 'reg_no', $regNo);
+      //echo 2;
+
+      if (isset($result)) {
+        // echo 3;
+        $courseResultsFull = $result;
+        return $courseResultsFull[0];
+      } else {
+        //echo 4;
+        return false;
+        //return '<br>No result found for this course';
+      }
     }
   }
 }
@@ -404,7 +410,7 @@ function getPersonalResult($results, $regNo)
   //$resultsObj = $results;
 
   foreach ($resultsObj as $result) {
-    if ($result['reg_no'] == $regNo) {
+    if ($result['reg_num'] == $regNo) {
       return $result;
     }
   }
@@ -438,4 +444,88 @@ function returnGrade($score)
       return 'X';
       break;
   }
+}
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////// Borrowed From Admin ///////////////////////////////////////////////////////////////////////////////////////
+
+function calculateStudentLevel($set)
+{
+  $set = explode('/', $set);
+  $year = date('Y');
+  $level = 0;
+  if (isset($set[0])) {
+    $level = ($year - $set[0]);
+  }
+  createLog('Success', 'calculateStudentLevel');
+  if ($level < 1) {
+    return 1;
+  }
+  return ($level);
+}
+
+function createLog($title, $description)
+{
+  global $db_handle;
+
+  $title = sanitize($title, 'clean');
+  $description = sanitize($description, 'none');
+
+  $query = "INSERT INTO `log` (
+    `log_title`,
+    `log_description`
+         ) VALUES (
+    '$title', 
+    '$description'
+         )";
+  return $db_handle->runQueryWithoutResponse($query);
+}
+
+function getCourseSessionInfo($courseId, $credits)
+{
+  global $db_handle;
+  //$response = [];
+  $result = $db_handle->selectAllWhereWith2Conditions('results', 'course_id', $courseId, 'course_credits', $credits);
+
+  if (isset($result)) {
+    return $result[0];
+  } else {
+    return false;
+  }
+}
+
+function compileIncourse($incourseArray)
+{
+  $scoretotal = 0;
+  $absoluteTotal = 0;
+  if (isset($incourseArray)) {
+    foreach ($incourseArray as $incourse) {
+      $absoluteTotal += $incourse['total'];
+      $scoretotal += $incourse['score'];
+    }
+  } else {
+    return 0;
+  }
+
+  return ceil(30 * ((($scoretotal / $absoluteTotal) * 100) / 100));
+}
+
+function compileExam($examArray)
+{
+  $scoretotal = 0;
+  $absoluteTotal = 0;
+  if (isset($incourseArray)) {
+    foreach ($examArray as $exam) {
+      $absoluteTotal += $exam['total'];
+      $scoretotal += $exam['score'];
+    }
+  } else {
+    return 0;
+  }
+
+  return ceil(70 * ((($scoretotal / $absoluteTotal) * 100) / 100));
 }

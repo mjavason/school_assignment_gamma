@@ -15,18 +15,20 @@ $coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
 //$courseInfo = getCourseInfo(($courseResults['course_id']));
 //print_r($courseResults);
 
-$studentLevel = getStudentLevel(2017030180311);
-$coursesTaken = getCoursesTakenByStudent(2017030180311);
-for ($i = 0; $i < count($coursesTaken); $i++) {
-    $courseResults = getResultsPerCourseTaken($coursesTaken, $i);
-    if ($courseResults) {
-        $courseInfo = getCourseInfo($courseResults['course_id']);
-        $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
-        if($personalResult != false){
-            print_r($personalResult);
-            echo ($personalResult);
-        }else{
-            echo 'no result found';
-        }
-    }
-}
+// $studentLevel = calculateStudentLevel(2017030180311);
+// $coursesTaken = getCoursesTakenByStudent(2017030180311);
+// for ($i = 0; $i < count($coursesTaken); $i++) {
+//     $courseResults = getResultsPerCourseTaken($coursesTaken, $i, getCourseSessionSemester($coursesTaken['course_id']));
+//     if ($courseResults) {
+//         $courseInfo = getCourseInfo($courseResults['course_id']);
+//         $personalResult = getPersonalResult($courseResults['results'], $_SESSION['student_reg']);
+//         if($personalResult != false){
+//             print_r($personalResult);
+//             echo ($personalResult);
+//         }else{
+//             echo 'no result found';
+//         }
+//     }
+// }
+
+echo (calculateStudentLevel('2017/2018'));
