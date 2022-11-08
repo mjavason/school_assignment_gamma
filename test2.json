@@ -1,12 +1,7 @@
 [
     {
-        "reg_num": "2017030180311",
-        "incourse": {
-            "1": {
-                "title": "Quiz",
-                "total": 100,
-                "score": 100
-            }
-        }
+        "course_id": "1",
+        "course_credits": "3",
+        "course_set": "2017/2018"
     }
 ]

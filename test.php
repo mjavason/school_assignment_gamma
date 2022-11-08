@@ -1,13 +1,13 @@
 <?php
 require_once('config/connect.php');
 require_once('functions/functions.php');
+echo '<pre>';
 
 //echo (getDepartmentId('Computer Engineering'));
-echo '<pre>';
 //print_r(getCoursesTakenByStudent(2017030180311));
 //print_r(getStudentLevel(2017030180311));
 
-$coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
+//$coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
 
 //print_r(getCourseInfo(1));
 
@@ -31,4 +31,6 @@ $coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
 //     }
 // }
 
-echo (calculateStudentLevel('2017/2018'));
+//echo (calculateStudentLevel('2017/2018'));
+
+echo 'hello world';

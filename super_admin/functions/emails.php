@@ -440,7 +440,7 @@ class Email_Sys extends DBController
 
 		$i = 1;
 		foreach ($cart as $e_cart) {
-			$message .= 	'<tr>
+			$message .= '<tr>
 						<td>
 							<p style="margin-bottom: 0;">' . $i . '. ' . $e_cart['product_title'] . '</p>';
 			foreach ($e_cart['url'] as $e_url) {
@@ -496,16 +496,16 @@ class Email_Sys extends DBController
 		$header .= 'From: Vibe Temple <marketing@vibetemple.com>' . "\r\n";
 		$retval = @mail($to, $subject, $message, $header);
 		if ($retval == true) {
-			return  'Mail sent successfully to ' . $cust_email . ' ';
+			return 'Mail sent successfully to ' . $cust_email . ' ';
 		} else {
-			return  'Internal error. Mail fail to send';
+			return 'Internal error. Mail fail to send';
 		}
 		return $this;
 	}
 
 	public function welcomeEmail($email, $username)
 	{
-		$to  = $email;
+		$to = $email;
 		$d = date('Y');
 		$subject = "Welcome To Winkir";
 		$message = '
@@ -587,9 +587,9 @@ class Email_Sys extends DBController
 		$header .= "From: " . $this->sitename . "<" . $this->site_email . ">" . "\r\n";
 		$retval = @mail($to, $subject, $message, $header);
 		if ($retval == true) {
-			return  'Mail sent successfully. Check ' . $email . ' email account for `Email Activation Link`!';
+			return 'Mail sent successfully. Check ' . $email . ' email account for `Email Activation Link`!';
 		} else {
-			return  'Internal error. Mail fail to send';
+			return 'Internal error. Mail fail to send';
 		}
 		return $this;
 	}
@@ -989,7 +989,7 @@ class Email_Sys extends DBController
 							<tr>
 							<td class="content-block">
 								<h6>
-								<a href="https://vibetemple.com">' .  $setting['company_name'] . '</a>.
+								<a href="https://vibetemple.com">' . $setting['company_name'] . '</a>.
 								</h6> 
 							</td>
 							</tr>
@@ -1070,7 +1070,7 @@ class Email_Sys extends DBController
 
 	public function passRecovery($email)
 	{
-		$to  = $email;
+		$to = $email;
 		$d = date('Y');
 		$subject = "Winkir Password Recovery Centre";
 		$message = '
@@ -1149,9 +1149,9 @@ class Email_Sys extends DBController
 		$header .= 'From: Winkir <info@winkir.com>' . "\r\n";
 		$retval = @mail($to, $subject, $message, $header);
 		if ($retval == true) {
-			return  'Mail sent successfully. Check ' . $email . ' email account for `Email Activation Link`!';
+			return 'Mail sent successfully. Check ' . $email . ' email account for `Email Activation Link`!';
 		} else {
-			return  'Internal error. Mail fail to send';
+			return 'Internal error. Mail fail to send';
 		}
 		return $this;
 	}

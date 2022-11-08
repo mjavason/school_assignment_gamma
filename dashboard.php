@@ -48,7 +48,7 @@ if (isset($_SESSION['ultra_log'])) {
 					$coursesTaken = getCoursesTakenByStudent($_SESSION['student_reg']);
 
 					for ($i = 0; $i < $studentLevel; $i++) {
-						$year = date('Y') - $studentLevel + $i;
+						$year = date('Y') - $studentLevel + $i + 1;
 					?>
 						<div class="col-md-6 p-1 col-lg-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
 							<div class="card bg-color-grey card-text-color-hover-light border-0 bg-color-hover-primary transition-2ms box-shadow-1 box-shadow-1-primary box-shadow-1-hover">
