@@ -517,27 +517,21 @@ function returnGrade($score)
   switch ($score) {
     case ($score < 40):
       return 'F';
-      break;
 
     case ($score >= 40 && $score < 50):
       return 'D';
-      break;
 
     case ($score >= 50 && $score < 60):
       return 'C';
-      break;
 
     case ($score >= 60 && $score < 70):
       return 'B';
-      break;
 
     case ($score >= 70):
       return 'A';
-      break;
 
     default:
       return 'X';
-      break;
   }
 }
 
@@ -613,7 +607,7 @@ function compileExam($examArray)
 {
   $scoretotal = 0;
   $absoluteTotal = 0;
-  if (isset($incourseArray)) {
+  if (isset($examArray)) {
     foreach ($examArray as $exam) {
       $absoluteTotal += $exam['total'];
       $scoretotal += $exam['score'];
