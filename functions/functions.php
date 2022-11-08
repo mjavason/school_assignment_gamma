@@ -599,7 +599,6 @@ function compileIncourse($incourseArray)
   } else {
     return 0;
   }
-
   return ceil(30 * ((($scoretotal / $absoluteTotal) * 100) / 100));
 }
 

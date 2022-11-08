@@ -118,6 +118,7 @@ if (!isset($_GET['year'])) {
                                                                                                 echo $incourse;
                                                                                             } else {
                                                                                                 $incourse = 0;
+                                                                                                echo $incourse;
                                                                                             } ?>
                                                                                 <br>
                                                                                 Exam: <?php if (isset($personalResult['exam'])) {
@@ -202,6 +203,7 @@ if (!isset($_GET['year'])) {
                                                                                                 echo $incourse;
                                                                                             } else {
                                                                                                 $incourse = 0;
+                                                                                                echo $incourse;
                                                                                             } ?>
                                                                                 <br>
                                                                                 Exam: <?php if (isset($personalResult['exam'])) {
